@@ -73,7 +73,7 @@ console.log(imgArry);
 
 function clickfunction(event){
 
-    if ((event.target.id === 'limg' || event.target.id === 'mimg' || event.target.id === 'rimg ') && counter < vote) {
+    if ((event.target.id === 'limg' || event.target.id === 'mimg' || event.target.id === 'rimg') && counter < vote) {
 
         if (event.target.id === 'limg'){
             imgs.all[lindex].click++;
@@ -96,12 +96,7 @@ function clickfunction(event){
 
 
 
-
-
-
-
-
-function printresult(evt){
+function showResult(evt){
     for (let i=0;i<imgs.all.length;i++){
         let li = document.createElement('li')
         listofresult.appendChild(li);
@@ -110,7 +105,7 @@ function printresult(evt){
 }
 
  
-viewResult.addEventListener('click',printresult)
+viewResult.addEventListener('click',showResult)
 
 imgSection.addEventListener('click',clickfunction)
 renderimgs();
