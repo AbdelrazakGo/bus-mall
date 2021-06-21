@@ -96,7 +96,7 @@ function clickfunction(event){
 
 
 
-function showResult(evt){
+function showResults(evt){
     for (let i=0;i<imgs.all.length;i++){
         let li = document.createElement('li')
         listofresult.appendChild(li);
@@ -105,7 +105,7 @@ function showResult(evt){
 }
 
  
-viewResult.addEventListener('click',showResult)
+viewResult.addEventListener('click',showResults)
 
 imgSection.addEventListener('click',clickfunction)
 renderimgs();
