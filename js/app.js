@@ -91,7 +91,7 @@ function clickfunction(event){
        renderimgs();
        counter++;
     }
-    else{Drawchart();}
+     if (counter === 25 ){Drawchart();}
 }
 
 
