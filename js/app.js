@@ -2,7 +2,8 @@
 
 
 let imgArry = ['bag.jpg','banana.jpg','bathroom.jpg','boots.jpg','breakfast.jpg','bubblegum.jpg','chair.jpg','cthulhu.jpg','dog-duck.jpg','dragon.jpg','pen.jpg','pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','usb.gif','water-can.jpg','wine-glass.jpg']
-
+let productArray = [];
+let arr = [];
 const imgSection = document.getElementById('imgSection')
 const limg = document.getElementById('limg');
 const mimg = document.getElementById('mimg');
@@ -12,7 +13,7 @@ const listofresult = document.getElementById('listofresult')
 let vote = 25;
 let counter = 0;
 
-    let lindex;
+    let lindex ;
     let mindex ;
     let rindex ;
 
@@ -45,17 +46,19 @@ for(let i=0;i<imgArry.length;i++){
 // console.log(imgs.all);
 
 function renderimgs(){
-
-    lindex = getRandomInt(0,imgArry.length -1)
+   
+    
 
     do{
 
-         
+         lindex = getRandomInt(0,imgArry.length -1)
          mindex = getRandomInt(0,imgArry.length -1)
          rindex = getRandomInt(0,imgArry.length -1)
 
     }
-    while (lindex === mindex || mindex === rindex || lindex === rindex );
+    while (lindex === mindex || mindex === rindex || lindex === rindex || arr.includes(lindex) || arr.includes (mindex) || arr.includes(rindex));
+    arr = [];
+    arr.push(lindex,mindex,rindex);
 
     limg.src = imgs.all[lindex].imgSrc;
     mimg.src = imgs.all[mindex].imgSrc;
@@ -109,13 +112,32 @@ function showresult(evt){
         li.textContent = `${imgs.all[i].name} had ${imgs.all[i].click} votes, and was seen ${imgs.all[i].view} times`
     }
     viewResult.removeEventListener('click',showresult);
+    localStorage.setItem('order',JSON.stringify(imgs.all))
 }
 
- 
+function getdate(){
+    
+    let data = JSON.parse(localStorage.getItem('order'));
+    for(let i=0;i<data.length;i++){
+
+      
+    
+    }
+
+} 
+getdate();
 viewResult.addEventListener('click',showresult)
 
 imgSection.addEventListener('click',clickfunction)
 renderimgs();
+
+
+
+
+
+
+
+
 
 
 
