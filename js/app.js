@@ -91,10 +91,11 @@ function clickfunction(event){
         imgs.all[rindex].click++;
 
        }
+
        renderimgs();
        counter++;
     }
-     if (counter === 25 ){Drawchart();}
+    if (counter === 25 ){Drawchart();}
 }
 
 
@@ -112,20 +113,22 @@ function showresult(evt){
         li.textContent = `${imgs.all[i].name} had ${imgs.all[i].click} votes, and was seen ${imgs.all[i].view} times`
     }
     viewResult.removeEventListener('click',showresult);
-    localStorage.setItem('order',JSON.stringify(imgs.all))
+    // localStorage.setItem('order',JSON.stringify(imgs.all))
 }
 
-function getdate(){
+// function getdate(){
     
-    let data = JSON.parse(localStorage.getItem('order'));
-    for(let i=0;i<data.length;i++){
+//     let data = JSON.parse(localStorage.getItem('order'));
+//     for(let i=0;i<data.length;i++){
 
       
     
-    }
+//     }
 
-} 
-getdate();
+// } 
+// getdate();
+
+
 viewResult.addEventListener('click',showresult)
 
 imgSection.addEventListener('click',clickfunction)
@@ -211,3 +214,14 @@ function Drawchart () {
 
 }
 
+
+// function dataStoring (){
+//     let previousdata = JSON.stringify(imgs.all)
+//     localStorage.setItem('preData',previousdata);
+// }
+
+// function retriveDate(){
+//     imgs.all = JSON.parse(localStorage.getItem('preData'))
+// }
+
+// retriveDate();
