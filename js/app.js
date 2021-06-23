@@ -25,12 +25,13 @@ function getRandomInt(min, max) {
 
 // console.log(limg,mimg,rimg);
 
-function imgs(name,src) {
+function imgs(name,src,view=0,click=0) {
     this.name = name;
-    this.imgSrc = `./img/${src}`;     
-    imgs.all.push(this); 
-    this.view = 0; 
-    this.click = 0; 
+    // this.imgSrc = `./img/${src}`;   
+    this.imgSrc = src   
+    this.view =view; 
+    this.click =click; 
+    imgs.all.push( this );
      
 }
 
@@ -38,9 +39,8 @@ imgs.all = [];
 
 for(let i=0;i<imgArry.length;i++){
     let imgName = imgArry[i].split('.')[0]
-    new imgs (imgName,imgArry[i]);
-
-    
+    new imgs(imgName,`./img/${imgArry[i]}`);
+    // imgs.all.push(newObject);
 }
 
 // console.log(imgs.all);
@@ -57,25 +57,24 @@ function renderimgs(){
 
     }
     while (lindex === mindex || mindex === rindex || lindex === rindex || arr.includes(lindex) || arr.includes (mindex) || arr.includes(rindex));
-    arr = [];
-    arr.push(lindex,mindex,rindex);
-
+    
+    
+    
     limg.src = imgs.all[lindex].imgSrc;
     mimg.src = imgs.all[mindex].imgSrc;
     rimg.src = imgs.all[rindex].imgSrc;
-
+    
     imgs.all[lindex].view++;
     imgs.all[mindex].view++;
     imgs.all[rindex].view++;
 
-
-
+    
 }
 
 console.log(imgArry);
 
 function clickfunction(event){
-
+    
     if ((event.target.id === 'limg' || event.target.id === 'mimg' || event.target.id === 'rimg') && counter < vote) {
 
         if (event.target.id === 'limg'){
@@ -83,16 +82,17 @@ function clickfunction(event){
         }
 
        if (event.target.id === 'mimg') {
-        imgs.all[mindex].click++;
+            imgs.all[mindex].click++;
 
        }
 
        if (event.target.id === 'rimg'){
-        imgs.all[rindex].click++;
+            imgs.all[rindex].click++;
 
        }
 
        renderimgs();
+       localStorage.setItem('order',JSON.stringify(imgs.all));
        counter++;
     }
     if (counter === 25 ){Drawchart();}
@@ -135,7 +135,13 @@ imgSection.addEventListener('click',clickfunction)
 renderimgs();
 
 
-
+function getData(){
+    let data = JSON.parse(localStorage.getItem('order'));
+    if(data){
+        imgs.all = data
+    }
+}
+getData();
 
 
 
